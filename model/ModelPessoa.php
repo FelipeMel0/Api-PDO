@@ -12,7 +12,7 @@ class ModelPessoa{
         $json = file_get_contents("php://input");
         $dadosPessoa = json_decode($json);
 
-        $this->_codPessoa = $dadosPessoa->cod_pessoa;
+        $this->_codPessoa = $dadosPessoa->cod_pessoa ?? null;
         
         $this->_conn = $conn; 
 
@@ -40,6 +40,8 @@ class ModelPessoa{
         $stm = $this->_conn->prepare($sql);
 
         $stm->bindValue(1, $this->_codPessoa);
+
+        $stm->execute();
 
         return $stm->fetchAll(\PDO::FETCH_ASSOC);
 
