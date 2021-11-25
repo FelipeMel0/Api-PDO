@@ -1,6 +1,6 @@
 <?php
 
-class Controller
+class ControllerPessoa
 {
 
     private $_method;
